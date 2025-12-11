@@ -1,6 +1,12 @@
+# version: '3.8' BUILD IMAGE LOCAL
 services:
   app:
     image: ${DOCKERHUB_USERNAME}/transaksi-app:latest
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    # BUILD IMAGE LOCAL
+
     container_name: transaksi-app
     depends_on:
       mysql:

@@ -42,6 +42,7 @@ jobs:
         retention-days: 1
 
   docker-build-push:
+  # docker-build-only: BUILD IMAGE LOCAL
     needs: build-and-test
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
@@ -66,10 +67,13 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
     
     - name: Build and push Docker image
+    # - name: Build local Docker image BUILD IMAGE LOCAL
       uses: docker/build-push-action@v5
       with:
         context: .
         push: true
+        # push: false BUILD IMAGE LOCAL
+        # tags: transaksi-app:latest-local BUILD IMAGE LOCAL
         tags: |
           ${{ secrets.DOCKER_USERNAME }}/transaksi-app:latest
           ${{ secrets.DOCKER_USERNAME }}/transaksi-app:${{ github.run_number }}
@@ -78,5 +82,8 @@ jobs:
     
     - name: Image digest
       run: echo "✅ Docker image pushed successfully!"
+    # - name: Image Build Complete
+    #   run: echo "✅ Docker image built locally successfully!"
+    # BUILD IMAGE LOCAL
 
 
