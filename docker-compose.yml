@@ -1,7 +1,7 @@
 # version: '3.8' BUILD IMAGE LOCAL
 services:
   app:
-    image: ${DOCKERHUB_USERNAME}/transaksi-app:latest
+    image: ${DOCKER_USERNAME}/transaksi-app:latest
     # build:
     #   context: .
     #   dockerfile: Dockerfile
